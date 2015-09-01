@@ -17,10 +17,12 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Edycja guzika</string>
+   <string>Record edit</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="preferences-system"/>
+   <iconset theme="preferences-system">
+    <normaloff/>
+   </iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

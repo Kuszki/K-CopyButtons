@@ -29,4 +29,6 @@ FORMS	+=	mainwindow.ui \
 
 RESOURCES	+=	common.qrc
 
+TRANSLATIONS	+=	kcopybuttons_pl.ts
+
 QMAKE_CXXFLAGS	+=	-s -fomit-frame-pointer -march=native

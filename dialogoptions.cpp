@@ -26,8 +26,7 @@ void DialogOptions::accept(void)
 {
 	if (ui->editText->document()->toPlainText().isEmpty())
 	{
-		QMessageBox::warning(this, "Błąd",
-						 "Tekst nie może być pusty");
+		QMessageBox::warning(this, tr("Error"), tr("Data can't be empty"));
 	}
 	else
 	{

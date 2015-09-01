@@ -6,42 +6,39 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>425</width>
     <height>500</height>
    </rect>
   </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
-  </property>
   <property name="minimumSize">
    <size>
-    <width>400</width>
+    <width>425</width>
     <height>500</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>Informacje o programie</string>
+   <string>About</string>
   </property>
   <property name="windowIcon">
    <iconset theme="dialog-information">
     <normaloff/>
    </iconset>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QFormLayout" name="formLayout">
+   <property name="fieldGrowthPolicy">
+    <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+   </property>
    <item row="0" column="0">
     <widget class="QLabel" name="labelProgram">
      <property name="text">
-      <string>Nazwa programu:</string>
+      <string>Program name:</string>
      </property>
     </widget>
    </item>
    <item row="0" column="1">
     <widget class="QLabel" name="labelName">
      <property name="text">
-      <string>K-CopyButtons</string>
+      <string notr="true">K-CopyButtons</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -54,14 +51,14 @@
    <item row="1" column="0">
     <widget class="QLabel" name="labelAuthor">
      <property name="text">
-      <string>Autor:</string>
+      <string>Author:</string>
      </property>
     </widget>
    </item>
    <item row="1" column="1">
     <widget class="QLabel" name="labelAuthorName">
      <property name="text">
-      <string>Łukasz &quot;Kuszki&quot; Dróżdż</string>
+      <string notr="true">Łukasz &quot;Kuszki&quot; Dróżdż</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -74,14 +71,14 @@
    <item row="2" column="0">
     <widget class="QLabel" name="labelLicense">
      <property name="text">
-      <string>Licencja:</string>
+      <string>License:</string>
      </property>
     </widget>
    </item>
    <item row="2" column="1">
     <widget class="QLabel" name="labelLicenseType">
      <property name="text">
-      <string>GNU GPL v2</string>
+      <string notr="true">GNU GPL v2</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -94,14 +91,14 @@
    <item row="3" column="0">
     <widget class="QLabel" name="labelSlite">
      <property name="text">
-      <string>Strona projektu:</string>
+      <string>Webslite:</string>
      </property>
     </widget>
    </item>
    <item row="3" column="1">
     <widget class="QLabel" name="labelGithub">
      <property name="text">
-      <string>&lt;a href=&quot;https://github.com/Kuszki/K-CopyButtons&quot;&gt;GitHub&lt;/a&gt;</string>
+      <string notr="true">&lt;a href=&quot;https://github.com/Kuszki/K-CopyButtons&quot;&gt;GitHub&lt;/a&gt;</string>
      </property>
      <property name="textFormat">
       <enum>Qt::AutoText</enum>
@@ -120,14 +117,14 @@
    <item row="4" column="0">
     <widget class="QLabel" name="labelContact">
      <property name="text">
-      <string>Kontakt:</string>
+      <string>Contact:</string>
      </property>
     </widget>
    </item>
    <item row="4" column="1">
     <widget class="QLabel" name="labelMail">
      <property name="text">
-      <string>&lt;a href=&quot;mailto:l.drozdz@o2.pl&quot;&gt;l.drozdz@o2.pl&lt;/a&gt;</string>
+      <string notr="true">&lt;a href=&quot;mailto:l.drozdz@o2.pl&quot;&gt;l.drozdz@o2.pl&lt;/a&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -143,7 +140,8 @@
    <item row="5" column="0" colspan="2">
     <widget class="QLabel" name="labelLicenseText">
      <property name="text">
-      <string>Niniejszy program jest wolnym oprogramowaniem; możesz go rozprowadzać dalej i/lub modyfikować na warunkach Powszechnej Licencji Publicznej GNU, wydanej przez Fundację Wolnego Oprogramowania - według wersji 2-giej tej Licencji lub którejś z późniejszych wersji.</string>
+      <string>This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.&lt;br&gt;
+The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignJustify|Qt::AlignTop</set>
@@ -154,35 +152,6 @@
     </widget>
    </item>
    <item row="6" column="0" colspan="2">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Niniejszy program rozpowszechniany jest z nadzieją, iż będzie on użyteczny - jednak BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej gwarancji PRZYDATNOŚCI HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH ZASTOSOWAŃ. W celu uzyskania bliższych informacji - Powszechna Licencja Publiczna GNU.</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignJustify|Qt::AlignVCenter</set>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="0" rowspan="2">
-    <widget class="QLabel" name="labelGNU">
-     <property name="maximumSize">
-      <size>
-       <width>160</width>
-       <height>160</height>
-      </size>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="common.qrc">:/icons/logo_gnu</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="1">
     <widget class="QLabel" name="labelLicenseEN">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -191,7 +160,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>&lt;a href=&quot;http://gnu.org.pl/text/licencja-gnu.html&quot;&gt;Treść licencji (polski)</string>
+      <string>&lt;a href=&quot;http://gnu.org.pl/text/licencja-gnu.html&quot;&gt;License (polish)&lt;/a&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
@@ -201,7 +170,7 @@
      </property>
     </widget>
    </item>
-   <item row="8" column="1">
+   <item row="7" column="0" colspan="2">
     <widget class="QLabel" name="labelLicensePL">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -210,7 +179,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>&lt;a href=&quot;http://www.gnu.org/licenses/gpl-2.0.html&quot;&gt;Treść licencji (angielski)&lt;/a&gt;</string>
+      <string>&lt;a href=&quot;http://www.gnu.org/licenses/gpl-2.0.html&quot;&gt;License (english)&lt;/a&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
@@ -220,23 +189,8 @@
      </property>
     </widget>
    </item>
-   <item row="9" column="0" colspan="2">
-    <spacer name="spacerInfo">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>357</width>
-       <height>81</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
   </layout>
  </widget>
- <resources>
-  <include location="common.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

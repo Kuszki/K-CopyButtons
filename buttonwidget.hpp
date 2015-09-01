@@ -5,9 +5,12 @@ class DialogOptions;
 
 #include "dialogoptions.hpp"
 
+#include <QMimeData>
+#include <QMouseEvent>
 #include <QApplication>
 #include <QClipboard>
 #include <QWidget>
+#include <QDrag>
 
 namespace Ui
 {
@@ -21,8 +24,7 @@ class ButtonWidget : public QWidget
 
 	public:
 
-		explicit ButtonWidget(QWidget* parent,
-						  unsigned uuid);
+		explicit ButtonWidget(QWidget* parent, unsigned uuid);
 		virtual ~ButtonWidget(void) override;
 
 		QString getText(void) const;
@@ -46,6 +48,8 @@ class ButtonWidget : public QWidget
 		Ui::ButtonWidget* ui;
 
 		DialogOptions* dialog;
+
+		virtual void mousePressEvent(QMouseEvent *event) override;
 
 	signals:
 

@@ -25,14 +25,15 @@ class MainWindow : public QMainWindow
 		void saveWidgets(void) const;
 		void loadWidgets(void);
 
-		bool setPath(void);
+		bool setPath(bool Action);
 
-		void createWidget(const QString& Text,
-					   unsigned UUID);
+		void createWidget(const QString& Text, unsigned UUID);
 
 	protected slots:
 
 		void insertWidget(const QString& Text);
+
+		void showTopmost(bool Topmost);
 
 	public:
 
@@ -54,10 +55,12 @@ class MainWindow : public QMainWindow
 
 	private:
 
-		static DialogInfo* info;
+		static const QString defSetPath;
+		static const QString defLstPath;
 
 		Ui::MainWindow* ui;
 
+		DialogInfo* info;
 		DialogOptions* dialog;
 
 		QString Widgetsfile;

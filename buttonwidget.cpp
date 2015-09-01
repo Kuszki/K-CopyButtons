@@ -4,11 +4,11 @@
 ButtonWidget::ButtonWidget(QWidget *parent, unsigned uuid)
 : QWidget(parent), ID(uuid), ui(new Ui::ButtonWidget)
 {
+	dialog = new DialogOptions(this);
+
 	ui->setupUi(this);
 
-	connect(dialog = new DialogOptions(this),
-		   SIGNAL(onDialogAccept(const QString&)),
-		   SLOT(updateText(const QString&)));
+	connect(dialog, &DialogOptions::onDialogAccept, this, &ButtonWidget::updateText);
 }
 
 ButtonWidget::~ButtonWidget()
@@ -49,4 +49,19 @@ void ButtonWidget::editText(void)
 {
 	dialog->open();
 	dialog->setFocus();
+}
+
+void ButtonWidget::mousePressEvent(QMouseEvent *event)
+{
+	if (event->button() == Qt::LeftButton
+	    && ui->labelText->geometry().contains(event->pos()))
+	{
+		QDrag *drag = new QDrag(this);
+		QMimeData *mimeData = new QMimeData;
+
+		mimeData->setText(ui->labelText->text());
+
+		drag->setMimeData(mimeData);
+		drag->exec();
+	}
 }

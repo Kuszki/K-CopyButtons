@@ -1,27 +1,20 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 
-DialogInfo* MainWindow::info = nullptr;
+const QString MainWindow::defSetPath = QDir::homePath() + QDir::separator() + ".kcopybuttons/settings.ini";
+const QString MainWindow::defLstPath = QDir::homePath() + QDir::separator() + ".kcopybuttons/records.ini";
 
 MainWindow::MainWindow(QWidget *parent)
 : QMainWindow(parent), ui(new Ui::MainWindow)
 {
-	QSettings INI("ustawienia.ini", QSettings::IniFormat);
+	Widgetsfile = QSettings(defSetPath, QSettings::IniFormat).value("list", defLstPath).toString();
 
-	if (info) qFatal("Ta klasa ma być singletonem!");
-	else info = new DialogInfo(this);
+	info = new DialogInfo(this);
+	dialog = new DialogOptions(this);
 
 	ui->setupUi(this);
 
-	INI.beginGroup("Program");
-
-	Widgetsfile = INI.value("list", QDir::homePath() + QDir::separator() + "wpisy.ini").toString();
-
-	INI.endGroup();
-
-	connect(dialog = new DialogOptions(this),
-		   SIGNAL(onDialogAccept(const QString&)),
-		   SLOT(insertWidget(const QString&)));
+	connect(dialog, &DialogOptions::onDialogAccept, this, &MainWindow::insertWidget);
 
 	loadWidgets();
 }
@@ -29,8 +22,8 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
 	if (Changed && QMessageBox::question(
-		    this, "Zapis pliku",
-		    "Czy chcesz zapisać zmiany w konfiguracji?",
+		    this, tr("Config changed"),
+		    tr("Do you want to save config file?"),
 		    QMessageBox::Yes | QMessageBox::No
 		    ) == QMessageBox::Yes) saveWidgets();
 
@@ -39,9 +32,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::saveWidgets(void) const
 {
-	QFile::remove(Widgetsfile);
-
-	QSettings INI(Widgetsfile, QSettings::IniFormat);
+	QFile::remove(Widgetsfile); QSettings INI(Widgetsfile, QSettings::IniFormat);
 
 	for (int i = 0; i < ui->layoutButtons->count(); i++)
 	{
@@ -50,9 +41,7 @@ void MainWindow::saveWidgets(void) const
 		if (button)
 		{
 			INI.beginGroup(QString::number(button->getID()));
-
 			INI.setValue("data", button->getText());
-
 			INI.endGroup();
 		}
 	}
@@ -67,32 +56,28 @@ void MainWindow::loadWidgets(void)
 	for (const auto& group: INI.childGroups())
 	{
 		INI.beginGroup(group);
-
-		createWidget(INI.value("data", "Tekst...").toString(), group.toUInt());
-
+		createWidget(INI.value("data", "...").toString(), group.toUInt());
 		INI.endGroup();
-
-
 	}
 }
 
-bool MainWindow::setPath(void)
+bool MainWindow::setPath(bool Action)
 {
-	const QString tmp = QFileDialog::getOpenFileName(
-						this, "Otwórz plik",
-						QDir::homePath(),
-						"Pliki konfiguracyjne (*.ini)");
+	QString tmp = QString();
+
+	if (Action) tmp = QFileDialog::getOpenFileName(
+					   this, tr("Open file"),
+					   QDir::homePath(),
+					   tr("Config files (*.ini)"));
+	else tmp = QFileDialog::getSaveFileName(
+				 this, tr("Open file"),
+				 QDir::homePath(),
+				 tr("Config files (*.ini)"));
 
 	if (tmp.isEmpty()) return false;
 	else Widgetsfile = tmp;
 
-	QSettings INI("ustawienia.ini", QSettings::IniFormat);
-
-	INI.beginGroup("Program");
-
-	INI.setValue("list", Widgetsfile);
-
-	INI.endGroup();
+	QSettings(defSetPath, QSettings::IniFormat).setValue("list", Widgetsfile);
 
 	return true;
 }
@@ -103,13 +88,8 @@ void MainWindow::createWidget(const QString& Text, unsigned UUID)
 
 	b->updateText(Text);
 
-	connect(b,
-		   SIGNAL(onDelete(unsigned)),
-		   SLOT(removeWidget(unsigned)));
-
-	connect(b,
-		   SIGNAL(onChange(const QString&)),
-		   SLOT(enableSave(const QString&)));
+	connect(b, &ButtonWidget::onDelete, this, &MainWindow::removeWidget);
+	connect(b, &ButtonWidget::onChange, this, &MainWindow::enableSave);
 
 	ui->layoutButtons->addWidget(b);
 }
@@ -119,6 +99,14 @@ void MainWindow::insertWidget(const QString& Text)
 	createWidget(Text, time(nullptr));
 
 	Changed = true;
+}
+
+void MainWindow::showTopmost(bool Topmost)
+{
+	if (Topmost) setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
+	else setWindowFlags(windowFlags() & ~Qt::WindowStaysOnTopHint);
+
+	show();
 }
 
 void MainWindow::removeWidget(unsigned UUID)
@@ -138,12 +126,12 @@ void MainWindow::addWidget(void)
 
 void MainWindow::loadFromFile(void)
 {
-	if (setPath()) loadWidgets();
+	if (setPath(true)) loadWidgets();
 }
 
 void MainWindow::saveToFile(void)
 {
-	if (setPath()) saveWidgets();
+	if (setPath(false)) saveWidgets();
 }
 
 void MainWindow::showAbout(void)
