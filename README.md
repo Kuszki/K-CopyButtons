@@ -1,10 +1,14 @@
 # K-CopyButtons
 Prosty program pozwalający kopiować do schowka zapisane treści
 
-Jeśli znalazłeś błąd, masz jakieś propozycje lub uwagi, zgłoś to w <a target="_blank" href="https://github.com/Kuszki/K-CopyButtons/issues">bugtrackerze</a> na GitHubie.
+- [x] Dodawanie, usuwanie i edycja wpisów
+- [x] Możliwość eksportowania/importowania listy wpisów
+- [x] Tłumaczenia na język polski
+- [x] Tłumaczenia na język angielski
 
-Licencja
-----------
+Jeśli znalazłeś błąd, masz jakieś propozycje lub uwagi, zgłoś to w [bugtrackerze]("https://github.com/Kuszki/K-CopyButtons/issues") na GitHubie.
+
+##Licencja
 
 Niniejszy program jest wolnym oprogramowaniem; możesz go rozprowadzać dalej i/lub modyfikować na warunkach Powszechnej Licencji Publicznej GNU, wydanej przez Fundację Wolnego Oprogramowania - według wersji 2-giej tej Licencji lub którejś z późniejszych wersji.
 
