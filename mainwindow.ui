@@ -26,27 +26,6 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="2" column="0">
-     <widget class="QToolButton" name="buttonInfo">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>32</horstretch>
-        <verstretch>32</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="toolTip">
-       <string>Informacje o programie...</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset theme="dialog-information">
-        <normaloff/>
-       </iconset>
-      </property>
-     </widget>
-    </item>
     <item row="2" column="1">
      <spacer name="spacerTools">
       <property name="orientation">
@@ -182,6 +161,27 @@
        </size>
       </property>
      </spacer>
+    </item>
+    <item row="2" column="0">
+     <widget class="QToolButton" name="buttonInfo">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>32</horstretch>
+        <verstretch>32</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="toolTip">
+       <string>Informacje o programie...</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset theme="dialog-information">
+        <normaloff/>
+       </iconset>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
